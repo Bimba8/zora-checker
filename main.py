@@ -7,11 +7,16 @@ from decimal import Decimal, ROUND_DOWN
 def get_zora_tokens(wallet_address, retries=50, delay=1):
     url = "https://api.zora.co/universal/graphql"
     query = """
-    query graph {
-      zoraTokenAllocation(identifierWalletAddresses: "ADDRESS") {
-        totalTokensEarned {
-          totalTokens
+    query {
+      zoraTokenAllocation(
+        identifierWalletAddresses: ["ADDRESS"],
+        zoraClaimContractEnv:  PRODUCTION
+      ) {
+        totalTokensEarned{
+        totalTokens
+        
         }
+    
       }
     }
     """
